@@ -1,0 +1,20 @@
+<div class="card h-100 product-card">
+  <div class="card-img-wrapper">
+    <img [src]="product.images[0]" class="card-img-top" alt="{{ product.title }}">
+  </div>
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title text-truncate mb-2">{{ product.title }}</h5>
+    <div class="rating mb-2">
+      <i class="bi bi-star-fill" *ngFor="let star of [1,2,3,4,5]"></i>
+    </div>
+    <p class="card-text price-tag mb-2">
+      <span class="original-price" *ngIf="product.discountPercentage">{{ product.price }} EGP</span>
+      <span class="final-price">{{ product.price | discountPrice: product.discountPercentage }} EGP</span>
+    </p>
+    <p class="stock-status" [ngClass]="product.stock > 0 ? 'in-stock' : 'out-of-stock'">
+      {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+    </p>
+    <a [routerLink]="['/product', product.id]" class="btn btn-primary mt-auto">View Details</a>
+  </div>
+</div>
+  

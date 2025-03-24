@@ -1,0 +1,43 @@
+<div *ngIf="product" class="product-details">
+  <div class="product-gallery">
+    <div class="main-image-container">
+      <img [src]="product.images[0]" class="main-image" alt="{{ product.title }}">
+    </div>
+    <div class="image-thumbnails">
+      <img *ngFor="let image of product.images" [src]="image" class="thumbnail" alt="{{ product.title }}">
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h2 class="product-title">{{ product.title }}</h2>
+    
+    <div class="rating">
+      <span class="stars">
+        <i class="bi bi-star-fill" *ngFor="let star of getStars(product.rating)" [style.color]="star === 'full' ? '#ffd700' : (star === 'half' ? '#ffd700' : '#e0e0e0')"></i>
+      </span>
+      <span class="rating-text">{{ product.rating }} Rating</span>
+    </div>
+
+    <div class="price-info">
+      <span class="current-price">{{ product.price | discountPrice: product.discountPercentage }} EGP</span>
+      <span class="original-price" *ngIf="product.discountPercentage">{{ product.price }} EGP</span>
+      <span class="discount-tag" *ngIf="product.discountPercentage">-{{ product.discountPercentage }}%</span>
+    </div>
+
+    <div class="brand">
+      <span class="label">Brand:</span>
+      <span class="value">{{ product.brand }}</span>
+    </div>
+
+    <div class="description">
+      <h3>Description</h3>
+      <p>{{ product.description }}</p>
+    </div>
+
+    <button class="add-to-cart">
+      <i class="bi bi-cart-plus"></i>
+      Add to Cart
+    </button>
+  </div>
+</div>
+  
