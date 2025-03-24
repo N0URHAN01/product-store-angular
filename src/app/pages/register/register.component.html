@@ -1,1 +1,69 @@
-<p>register works!</p>
+<div class="register-page">
+  <div class="register-container">
+    <h2>Create Account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Email</label>
+        <div class="input-wrapper">
+          <i class="bi bi-envelope"></i>
+          <input type="email" formControlName="email" placeholder="Enter your email">
+        </div>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <small class="error">{{ getErrorMessage('email') }}</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Name</label>
+        <div class="input-wrapper">
+          <i class="bi bi-person"></i>
+          <input type="text" formControlName="name" placeholder="Enter your full name">
+        </div>
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+          <small class="error">{{ getErrorMessage('name') }}</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Username</label>
+        <div class="input-wrapper">
+          <i class="bi bi-person-badge"></i>
+          <input type="text" formControlName="username" placeholder="Choose a username">
+        </div>
+        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          <small class="error">{{ getErrorMessage('username') }}</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <div class="input-wrapper">
+          <i class="bi bi-lock"></i>
+          <input type="password" formControlName="password" placeholder="Create a password">
+        </div>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <small class="error">{{ getErrorMessage('password') }}</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <div class="input-wrapper">
+          <i class="bi bi-lock-fill"></i>
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm your password">
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+          <small class="error">{{ getErrorMessage('confirmPassword') }}</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">
+        <span>Create Account</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+      <p class="login-link">Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+  </div>
+</div>
+  
