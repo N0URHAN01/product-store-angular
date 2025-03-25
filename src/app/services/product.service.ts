@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';  // Add this import
+import { map } from 'rxjs/operators';
 import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private jsonUrl = 'assets/products.json';
+  private baseUrl = 'https://dummyjson.com/products';
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<{ products: Product[] }>(this.jsonUrl).pipe(
+    return this.http.get<{ products: Product[] }>(this.baseUrl).pipe(
       map(response => response.products)
     );
   }
 
-  getProductById(id: number): Observable<Product | undefined> {
-    return this.getProducts().pipe(
-      map(products => products.find(product => product.id === id))
-    );
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/${id}`);
   }
 }

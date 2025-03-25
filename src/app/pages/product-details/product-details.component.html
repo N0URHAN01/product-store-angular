@@ -13,7 +13,9 @@
     
     <div class="rating">
       <span class="stars">
-        <i class="bi bi-star-fill" *ngFor="let star of getStars(product.rating)" [style.color]="star === 'full' ? '#ffd700' : (star === 'half' ? '#ffd700' : '#e0e0e0')"></i>
+        <i class="bi bi-star-fill" *ngFor="let star of getStars(product.rating)" 
+           [style.color]="star === 'full' ? '#ffd700' : (star === 'half' ? '#ffd700' : '#e0e0e0')">
+        </i>
       </span>
       <span class="rating-text">{{ product.rating }} Rating</span>
     </div>
@@ -34,10 +36,10 @@
       <p>{{ product.description }}</p>
     </div>
 
-    <button class="add-to-cart">
+    <!-- ✅ Add to Cart Button -->
+    <button class="add-to-cart" (click)="addToCart()" [disabled]="product.stock === 0">
       <i class="bi bi-cart-plus"></i>
-      Add to Cart
+      {{ product.stock > 0 ? 'Add to Cart' : 'Out of Stock' }}
     </button>
   </div>
 </div>
-  

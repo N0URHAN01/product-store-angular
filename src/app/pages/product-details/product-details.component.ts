@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product';
 import { DiscountPricePipe } from '../../pipes/discount-price.pipe'; 
+import { CartService } from '../../services/cart.service'; // ✅ Import CartService
 
 @Component({
   selector: 'app-product-details',
@@ -15,7 +16,11 @@ import { DiscountPricePipe } from '../../pipes/discount-price.pipe';
 export class ProductDetailsComponent {
   product!: Product;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService // ✅ Inject CartService
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -23,6 +28,14 @@ export class ProductDetailsComponent {
       this.productService.getProductById(id).subscribe(data => {
         this.product = data!;
       });
+    }
+  }
+
+  addToCart() {
+    if (this.product.stock > 0) {
+      this.cartService.addToCart(this.product);
+    } else {
+      alert("This product is out of stock.");
     }
   }
 

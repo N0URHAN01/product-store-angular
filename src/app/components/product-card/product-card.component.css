@@ -120,4 +120,28 @@
 .btn-primary:active {
   transform: translateY(0);
 }
-  
+ 
+
+.btn-secondary {
+  width: 100%;
+  padding: 0.7rem;
+  background: linear-gradient(45deg, #ff9800 0%, #f57c00 100%);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(45deg, #f57c00 0%, #e65100 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 124, 0, 0.3);
+}
+
+.btn-secondary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}

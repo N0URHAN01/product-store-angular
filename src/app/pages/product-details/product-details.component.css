@@ -198,3 +198,33 @@
     font-size: 1.6rem;
   }
 }
+
+
+.add-to-cart {
+  background: linear-gradient(45deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.add-to-cart:hover {
+  background: linear-gradient(45deg, #1976d2 0%, #1565c0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+}
+
+.add-to-cart:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}

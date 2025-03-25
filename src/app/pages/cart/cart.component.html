@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <h2 class="cart-title">Shopping Cart <span class="cart-icon">🛒</span></h2>
+
+  <div *ngIf="cart.length === 0" class="empty-cart">
+    <div class="empty-cart-message">
+      <i class="fas fa-shopping-cart"></i>
+      <p>Your cart is empty</p>
+      <button routerLink="/products" class="shop-now-btn">Start Shopping</button>
+    </div>
+  </div>
+
+  <div class="cart-items">
+    <div *ngFor="let item of cart; let i = index" class="cart-item">
+      <div class="item-image">
+        <img [src]="item.thumbnail" alt="{{ item.title }}">
+      </div>
+      <div class="item-details">
+        <h3 class="item-title">{{ item.title }}</h3>
+        <p class="item-price">${{ item.price.toFixed(2) }}</p>
+        <div class="quantity-controls">
+          <button (click)="decreaseQuantity(i)" class="quantity-btn">
+            <i class="fas fa-minus"></i>
+          </button>
+          <span class="quantity">{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(i)" class="quantity-btn">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+        <button (click)="removeFromCart(i)" class="remove-btn">
+          <i class="fas fa-trash"></i> Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cart.length > 0" class="cart-footer">
+    <div class="cart-summary">
+      <p class="total">Total: ${{ getTotal().toFixed(2) }}</p>
+      <button (click)="clearCart()" class="clear-cart-btn">
+        <i class="fas fa-trash-alt"></i> Clear Cart
+      </button>
+      <button class="checkout-btn">
+        <i class="fas fa-credit-card"></i> Proceed to Checkout
+      </button>
+    </div>
+  </div>
+</div>
