@@ -224,7 +224,7 @@
 }
 
 .add-to-cart:disabled {
-  background: #ccc;
+  background: #ccc; 
   cursor: not-allowed;
   box-shadow: none;
 }

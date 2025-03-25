@@ -23,7 +23,7 @@ export class LoginComponent {
       return;
     }
 
-    if (this.email === 'test@example.com' && this.password === 'Test@1234') {
+    if (this.email === 'nour@example.com' && this.password === 'Nour@1234') {
       alert('Login Successful!');
       this.router.navigate(['/products']);
     } else {

@@ -1,8 +1,16 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-4" *ngFor="let product of products">
-        <app-product-card [product]="product"></app-product-card>
-      </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let product of products">
+      <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
-  
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+  <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+  <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="page === currentPage">
+    {{ page }}
+  </button>
+  <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+</div>

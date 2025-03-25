@@ -12,7 +12,7 @@ export class CartService {
     this.loadCart();
   }
 
-  // ✅ Load cart from Local Storage
+  // Load cart from Local Storage
   private loadCart() {
     this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
     this.updateCartCount();
